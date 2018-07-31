@@ -1,0 +1,14 @@
+- hosts: up02
+  tasks:
+    - name: make directory
+      file:
+        path: "/home/hichtakk/.ssh"
+        state: directory
+    - name: create empty file
+      file:
+        path: "/home/hichtakk/.ssh/authorized_keys"
+        state: touch
+    - name: put public key
+      lineinfile:
+        path: "/home/hichtakk/.ssh/authorized_keys"
+        line: "{{ pubkey }}"
